@@ -9,7 +9,7 @@ startTime = datetime.now()
 filename = 'model.h5'
 model = pickle.load(open(filename, 'rb'))
 
-sex_d = {0: 'Kobieta', 1: 'Mężczyzna'}
+sex_d = {0: 'female', 1: 'male'}
 pclass_d = {0: 'Pierwsza', 1: 'Druga', 2: 'Trzecia'}
 embarked_d = {0: 'Cherbourg', 1: 'Queenstone', 2: 'Southampton'}
 
@@ -50,8 +50,9 @@ def main():
         "Parch": parch_slider,
         "Fare": fare_slider,
         "Embarked": embarked_radio,
-        "male": True if sex_radio == 'Mężczyzna' else False
+        "male": True if sex_radio == 1 else False
     }])
+    print(data["male"])
 
     survival = model.predict(data)
     s_confidence = model.predict_proba(data)
